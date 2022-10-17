@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+<div style="margin-top:2em" class="container">
+  <div class="row justify-content-around">
+    <div  class="col-md-5">
+      <form method="post">
+        {% csrf_token %}
+
+        {% comment %}
+        {{ form.non_field.errors }}
+        <div class="form-group">
+            <label for="{{ form.name.id_for_label }}">Your name:</label>
+            {{ form.name }}
+            <div class="invalid-feedback">
+                {{ form.name.errors }}
+            </div>
+        </div>
+                <div class="form-group">
+            <label for="{{ form.email.id_for_label }}">Email:</label>
+            {{ form.email }}
+            <div class="invalid-feedback">
+                {{ form.email.errors }}
+            </div>
+        </div>
+                <div class="form-group">
+            <label for="{{ form.body.id_for_label }}">Text:</label>
+            {{ form.body }}
+            <div class="invalid-feedback">
+                {{ form.body.errors }}
+            </div>
+        </div>
+        {% endcomment %}
+
+        {{ form.as_p }}       <!-- works after add widget to forms -->
+
+
+        <button type="submit" class="btn btn-success">Add comment</button>
+      </form>
+    </div>
+
+    <div class="col-md-5">
+      {% for item in comments %}
+      <div style="margin-top:1em" class="card">
+        <h5 class="card-header">
+          {{ item.name }}
+        </h5>
+        <div class="card-body">
+          <p class="card-text">{{ item.body }}</p>
+        </div>
+        <div align="right" class="card-footer text-muted">
+          {{ item.created|date:"H:i:s Y-m-d" }}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

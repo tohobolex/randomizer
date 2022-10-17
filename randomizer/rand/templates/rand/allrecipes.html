@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block list %}
+   <!-- <div class="list-group list-group-horizontal">
+                <h5 style="margin: 0.5em" >Category:</h5>
+                {% for item in category %}
+                <a style="margin-left: 1em" href="/allrecipes/category/{{ item }}" class="list-group-item list-group-item-action">{{ item }}</a>
+                {% endfor %}
+                <h5 style="margin: 0.5em" >Cuisine:</h5>
+                {% for item in cuisine %}
+                <a style="margin-left: 1em" href="/allrecipes/cuisine/{{ item }}" class="list-group-item list-group-item-action">{{ item }}</a>
+                {% endfor %}
+                <h5 style="margin: 0.5em">Difficulty:</h5>
+                {% for item in difficulty %}
+                <a style="margin-left: 1em" href="/allrecipes/difficulty/{{ item }}" class="list-group-item list-group-item-action">{{ item }}</a>
+                {% endfor %}
+    </div> -->  <!-- horizontal-->
+    <div style="margin:1em">
+     <div class="btn-group">
+          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Category
+          </button>
+          <ul class="dropdown-menu">
+            {% for item in category %}
+                <li><a class="dropdown-item" href="/allrecipes/category/{{ item }}" >{{ item }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+     <div class="btn-group">
+          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Cuisine
+          </button>
+          <ul class="dropdown-menu">
+            {% for item in cuisine %}
+                <li><a class="dropdown-item" href="/allrecipes/cuisine/{{ item }}" >{{ item }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+     <div class="btn-group">
+          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Difficulty
+          </button>
+          <ul class="dropdown-menu">
+            {% for item in difficulty %}
+                <li><a class="dropdown-item" href="/allrecipes/difficulty/{{ item }}" >{{ item }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+    <div>
+{% endblock %}
+
+{% block content %}
+    <!--<div class="row">-->
+        <!--<div class="col-md-1">-->
+        <div class="col-md-12">
+            <div class="container mt-3">
+                <div>
+                    {% for item in recipes %}
+                        <div class="card mb-3">
+                          <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src = "{{ item.photo.url }}" class="img-fluid img-thumbnail" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                              <div class="card-body">
+                                    <h3 class="card-title">{{ item.title }}</h3>
+                                    <h5><span class="badge text-bg-secondary">{{ item.category }}</span>
+                                    <span class="badge text-bg-secondary">{{ item.difficulty }}</span>
+                                    <span class="badge text-bg-secondary">{{ item.cuisine }}</span></h5>
+                                    <h5 class="card-title" style="margin-top:20px">Method</h5>
+                                    <p class="card-text">{{ item.method }}</p>
+                                    <h5 class="card-title">Ingredients</h5>
+                                    <p class="card-text">{{ item.ingredients }}</p>
+                                    <p><a href={{ item.source_url }} class="btn btn-primary" target="_blank">Read a primary source</a></p>
+                                    <p align="right" class="card-text"><small class="text-muted">created: {{ item.created_at|date:"H:i:s Y-m-d" }}</small></p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    <!--</div>-->
+{% endblock %}
+

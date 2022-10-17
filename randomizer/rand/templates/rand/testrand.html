@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<h2 style="margin:1em">Choose options for food</h2>
+
+<form method="post">
+    {% csrf_token %}
+    <div style="margin-top:2em" class="container">
+        <div class="row">
+            <div class="col-lg-4 mb-4">
+                <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Category:</h5>
+                            <div style="margin-left:8em" class="form group">
+                                {% for item in form.category %}
+                                <h6 class>{{ item }}</h6>
+                                {% endfor %}
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Cuisine:</h5>
+                            <div style="margin-left:8em"  class="form-check">
+                                {% for item in form.cuisine %}
+                                <h6 >{{ item }}</h6>
+                                {% endfor %}
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Difficulty:</h5>
+                            <div style="margin-left:8em" class="form-check">
+                                {% for item in form.difficulty %}
+                                <h6>{{ item }}</h6>
+                                {% endfor %}
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="d-grid gap-2 col-4 mx-auto">
+        <button type="submit" class="btn btn-success btn-lg">Show a random recipe</button>
+    </div>
+    </form>
+
+<!--<form method="post">
+    {% csrf_token %}
+    <div class="form form-check">
+        {{ form.as_p }}
+    </div>
+    <button type="submit" class="btn btn-primary">add</button>
+</form>-->
+
+<!--<input class="form-check-input" type="radio" name="flexRadioDefault" id="123">
+                          <label class="form-check-label" for="{{ item.id_for_label }}">
+                          </label>-->
+
+
+{% endblock %}
